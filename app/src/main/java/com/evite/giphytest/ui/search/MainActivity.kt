@@ -14,7 +14,7 @@ import com.evite.giphytest.model.GifData
 import com.evite.giphytest.onChange
 import com.evite.giphytest.ui.GifsListAdapter
 import com.evite.giphytest.ui.result.DisplayResultActivity
-import com.evite.giphytest.ui.search.GifsResultFragment.Companion.PARAM_LIST
+import com.evite.giphytest.ui.result.GifsResultFragment.Companion.PARAM_LIST
 import com.evite.giphytest.utils.Utils
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -22,15 +22,12 @@ import dagger.android.HasFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainContract.View, HasFragmentInjector {
+class MainActivity : BaseActivity(), MainContract.View {
 
-    @Inject internal lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
     @Inject lateinit var presenter: MainPresenter
     private val searchAdapter = GifsListAdapter(arrayListOf(), this)
     private val selectedGifs = arrayListOf<GifData>()
     private val columnCount = 2
-
-    override fun fragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
 
     override fun getLayout(): Int = R.layout.activity_main
 

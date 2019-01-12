@@ -7,31 +7,26 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class HttpClient {
+object HttpClient {
+    fun get(): Retrofit {
 
-    companion object {
+        val logInterceptor = HttpLoggingInterceptor()
+        logInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-        fun get(): Retrofit {
+        val client = OkHttpClient.Builder()
+            .addInterceptor(logInterceptor)
+            .build()
 
-            val logInterceptor = HttpLoggingInterceptor()
-            logInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        val gson = GsonBuilder()
+            .create()
 
-            val client = OkHttpClient.Builder()
-                    .addInterceptor(logInterceptor)
-                .build()
+        val cv = GsonConverterFactory.create(gson)
 
-            val gson = GsonBuilder()
-//                    .registerTypeAdapter(object: TypeToken<Map<String, Double>>() {}.type, CoinDeserializer())
-                .create()
-
-            val cv = GsonConverterFactory.create(gson)
-
-            return Retrofit.Builder()
-                .baseUrl(Constants.API_URL)
-                .client(client)
-                .addConverterFactory(cv)
-                .build()
-        }
+        return Retrofit.Builder()
+            .baseUrl(Constants.API_URL)
+            .client(client)
+            .addConverterFactory(cv)
+            .build()
     }
 
 }

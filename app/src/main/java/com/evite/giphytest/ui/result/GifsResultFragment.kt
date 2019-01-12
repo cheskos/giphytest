@@ -1,4 +1,4 @@
-package com.evite.giphytest.ui.search
+package com.evite.giphytest.ui.result
 
 import android.app.Fragment
 import android.os.Bundle

@@ -1,11 +1,10 @@
 package com.evite.giphytest.ui.result
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.evite.giphytest.R
 import com.evite.giphytest.model.GifData
-import com.evite.giphytest.ui.search.GifsResultFragment
-import com.evite.giphytest.ui.search.GifsResultFragment.Companion.PARAM_LIST
+import com.evite.giphytest.ui.result.GifsResultFragment.Companion.PARAM_LIST
 
 class DisplayResultActivity : AppCompatActivity() {
 
